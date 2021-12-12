@@ -1,0 +1,41 @@
+version: '3.6'
+
+services:
+
+  search_server:
+    platform: linux/amd64
+    build: .
+    command: python /app/search_engine/search_server.py serve --host 0.0.0.0:9898
+    networks:
+      - bb2
+    ports:
+      - "9898:9898"
+
+  telegram_core:
+    platform: linux/amd64
+    build: .
+    command: python /app/parlai/parlai/chat_service/services/telegram/telegram_bot.py
+    networks:
+      - bb2
+
+  api_core:
+    platform: linux/amd64
+    build: .
+    command: python /app/parlai/parlai/chat_service/services/telegram/run.py --config_path /app/parlai/parlai/chat_service/tasks/chatbot/config.yml
+    networks:
+      - bb2
+    ports:
+      - "35496:35496"
+
+  client_core:
+    platform: linux/amd64
+    build: .
+    command: python /app/parlai/parlai/chat_service/services/telegram/client.py
+    networks:
+      - bb2
+    ports:
+      - "8080:8080"
+
+
+networks:
+  bb2:
