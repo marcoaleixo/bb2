@@ -173,6 +173,7 @@ def setup_args():
 if __name__ == "__main__":
     error = True
     while error:
+        time.sleep(5)
         try:
             opt = setup_args()
             port = opt.get('port', 34596)
