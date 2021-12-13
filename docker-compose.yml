@@ -22,6 +22,8 @@ services:
     platform: linux/amd64
     build: .
     command: python /app/parlai/parlai/chat_service/services/telegram/run.py --config_path /app/parlai/parlai/chat_service/tasks/chatbot/config.yml
+    volumes:
+      - ./data:/app/parlai/data/models/blenderbot2/
     networks:
       - bb2
     ports:
