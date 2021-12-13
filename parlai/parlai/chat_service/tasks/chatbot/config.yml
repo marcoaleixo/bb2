@@ -17,6 +17,6 @@ opt:
       interactive_mode: True
       no_cuda: True
       override:
-        search_server: 0.0.0.0:9898
+        search_server: search_server:9898
 additional_args:
   page_id: 1 # Configure Your Own Page
